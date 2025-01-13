@@ -1,15 +1,17 @@
-# 엑셀 파일 읽기
 from google.colab import drive
 import pandas as pd
 
 # Google Drive 마운트
 drive.mount('/content/drive')
 
-# 파일 경로 지정
-file_path = "/content/drive/My Drive/example.xlsx"  # Google Drive에 저장된 엑셀 파일 경로
+# 엑셀 파일 경로
+file_path = "/content/drive/My Drive/example.xlsx"
 
 # 엑셀 파일 읽기
 data = pd.read_excel(file_path, engine='openpyxl')
+
+# 열 이름 정리 (공백 제거)
+data.columns = data.columns.str.strip()
 
 # 사용자 입력받기: 사용할 모듈 입력
 selected_modules = input("모듈을 선택하세요 (예: A,B,C): ").split(',')
